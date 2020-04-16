@@ -1,7 +1,7 @@
 const express = require("express")
 const axios = require("axios")
 const bodyParser = require("body-parser")
-const users = require("./users");
+const usersData = require("./users");
  
 const PORT = process.env.PORT || 5000
 const app = express()
@@ -14,28 +14,35 @@ app.use(bodyParser.json())
 app.get("/", (req, res) => {
   res.send("Hello REST API")
 })
- 
-app.get("/getData", (req, res) => {
-  axios.get("https://jsonplaceholder.typicode.com/posts")
-    .then(function(response) {
-      res.json(response.data)
-    }).catch(function(error) {
-      res.json("Error occured!")
-    })
+
+
+app.get("./users", (req, res) => {
+  res.status(200).json({
+    usersData
+  })
 })
  
-app.post("/getUserById", (req, res) => {
-  if (!req.body.id) {
-    res.json("No ID found in reqest body.")
-  } else {
-    axios.get(`https://jsonplaceholder.typicode.com/users/${req.body.id}`)
-      .then(function(response) {
-        res.json(response.data)
-      }).catch(function(error) {
-        res.json("Error occured!")
-      })
-  }
-})
+// app.get("/getData", (req, res) => {
+//   axios.get("https://jsonplaceholder.typicode.com/posts")
+//     .then(function(response) {
+//       res.json(response.data)
+//     }).catch(function(error) {
+//       res.json("Error occured!")
+//     })
+// })
+ 
+// app.post("/getUserById", (req, res) => {
+//   if (!req.body.id) {
+//     res.json("No ID found in reqest body.")
+//   } else {
+//     axios.get(`https://jsonplaceholder.typicode.com/users/${req.body.id}`)
+//       .then(function(response) {
+//         res.json(response.data)
+//       }).catch(function(error) {
+//         res.json("Error occured!")
+//       })
+//   }
+// })
  
 app.listen(PORT, function () {
   console.log(`Express server listening on port ${PORT}`)
