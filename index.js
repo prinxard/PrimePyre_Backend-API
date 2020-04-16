@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
  
 app.get("/", (req, res) => {
-  res.send("Hello REST API")
+  res.send("Ccoreating REST API")
 })
  
 app.get("/getData", (req, res) => {
