@@ -1,6 +1,7 @@
 const express = require("express")
 const axios = require("axios")
 const bodyParser = require("body-parser")
+const users = require("./users");
  
 const PORT = process.env.PORT || 5000
 const app = express()
@@ -11,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
  
 app.get("/", (req, res) => {
-  res.send("Welcome to your App!")
+  res.send("Hello REST API")
 })
  
 app.get("/getData", (req, res) => {
