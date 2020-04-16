@@ -1,9 +1,8 @@
 const express = require("express")
-const axios = require("axios")
+// const axios = require("axios")
 const bodyParser = require("body-parser")
 const usersData = require("./users");
  
-const PORT = process.env.PORT || 5000
 const app = express()
  
 app.set("json spaces", 2)
@@ -16,10 +15,8 @@ app.get("/", (req, res) => {
 })
 
 
-app.get("./users", (req, res) => {
-  res.status(200).json({
-    usersData
-  })
+app.get("/users", (req, res) => {
+  res.send(usersData)
 })
  
 // app.get("/getData", (req, res) => {
@@ -43,7 +40,9 @@ app.get("./users", (req, res) => {
 //       })
 //   }
 // })
- 
+
+
+const PORT = process.env.PORT || 5000 
 app.listen(PORT, function () {
   console.log(`Express server listening on port ${PORT}`)
 })
